@@ -7,6 +7,8 @@
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
 
+import time
+
 def run():
     fib_seq = [1, 2]
     total = 2 # sum manually 2 as it's an even number
@@ -27,4 +29,6 @@ def run():
 
 
 if __name__ == "__main__":
+    startTime = time.time()
     run()
+    print (f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
