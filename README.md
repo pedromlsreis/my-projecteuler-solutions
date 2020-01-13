@@ -1,2 +1,2 @@
-# my-projecteuler-solutions
+# projecteuler-solutions
 Repository of my ProjectEuler.net solutions.
