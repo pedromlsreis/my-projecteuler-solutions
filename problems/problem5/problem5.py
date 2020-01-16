@@ -7,8 +7,10 @@
 
 import time
 
+from numba import jit
+
+@jit(nopython=True)
 def run():
-    # TODO: taking 5min to run. Turn this to 1min.
     x = 20
 
     while True:        
