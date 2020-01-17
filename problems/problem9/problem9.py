@@ -10,15 +10,19 @@
 
 
 import time
+import math
 
 def run():
-    x = 1
+    # TODO: Took 2 min. Reduce time.
+    total = 1000
 
-    for 
-
-    while True:
-        a 
-        x += 1
+    for a in range(1, total+1):
+        for b in range(a+1, total+1):
+            for c in range(b+1, total+1):
+                if a**2 + b**2 == c**2:
+                    if a + b + c == total:
+                        answer = a * b * c
+                        break                    
 
     print("Answer:", answer)
 

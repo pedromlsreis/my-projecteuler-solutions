@@ -8,24 +8,22 @@
 import time
 
 def run():
-    import numpy as np
 
-    primes = np.array([2])
+    primes = {2}
+    max_no = 2000000
 
-    for x in range(3, 2000000, 2):
-        print (f"{x}/{2000000}...")
+    for x in range(3, max_no, 2):
+        print (f"{x}/{max_no}...")
         
         append = True
         for p in primes:
             if x % p == 0:
                 append = False
-        if x < 2000000:
-            if append:
-                primes = np.append(primes, x)
-        else:
-            break
     
-    answer = np.sum(primes)
+        if append:
+            primes.add(x)
+    
+    answer = sum(primes)
     print("Answer:", answer)
 
 
