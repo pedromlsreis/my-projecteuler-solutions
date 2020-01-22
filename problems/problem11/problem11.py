@@ -27,11 +27,18 @@
 
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
-
 import time
+import numpy as np
 import pandas as pd
 
 def run():
+    # highlighted_coords = [[6, 8], [7, 9], [8, 10], [9, 11]] # [row, column] - 0-based
+    # por ordem, no vetor unidimensional, posições non-zero-based (one-based):
+    # (6+0)*20 + 8+0
+    # (6+1)*20 + 8+1
+    # (6+2)*20 + 8+2
+    # (6+3)*20 + 8+3
+
     number_row1  = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08".split(" ")
     number_row2  = "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00".split(" ")
     number_row3  = "81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65".split(" ")
@@ -52,23 +59,64 @@ def run():
     number_row18 = "20 69 36 41 72 30 23 88 34 62 99 69 82 67 59 85 74 04 36 16".split(" ")
     number_row19 = "20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54".split(" ")
     number_row20 = "01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48".split(" ")
-     
-    numberlists = [number_row1, number_row2, number_row3, number_row4, number_row5, number_row6, number_row7, number_row8, number_row9, number_row10, 
-            number_row11, number_row12, number_row13, number_row14, number_row15, number_row16, number_row17, number_row18, number_row19, number_row20]
-
-    highlighted_coords = [[6, 8], [7, 9], [8, 10], [9, 11]] # [row, column] - 0-based
-    df = pd.DataFrame()
-
-    for column, n_row in enumerate(numberlists):
-        
-        for pos, n in enumerate(n_row):
-            n_row[pos] = int(n)
-        
-        df[column] = n_row
     
-    print(df)
-            
-    # print("Answer:", numberslist)
+    unidim = pd.DataFrame([number_row1, number_row2, number_row3, number_row4, number_row5, number_row6, number_row7, number_row8, number_row9, number_row10, 
+            number_row11, number_row12, number_row13, number_row14, number_row15, number_row16, number_row17, number_row18, number_row19, number_row20])
+    
+    unidim = unidim.astype(np.int16).values.flatten() # vetor unidimensional que percorre lista a lista
+
+    # Iterar vetor unidimensional `unidim` para cada uma das hipóteses - up, down, left, right, or diagonally.
+    # Id est, basta fazer down, right ou diagonalmente para baixo direita ou diagonalmente para baixo esquerda
+    # As outras opções acabam por ser repetidas ao longo da matriz, pelo que retirá-las reduz o tempo de
+    # processamento.
+    # Fazer contas para determinar qual o intervalo de posições no vetor a iterar, tendo em conta que a matriz
+    # é 20 x 20.
+    # Fazer um `for` para cada hipótese e ter em conta esquematização da hipótese na matriz para determinar limite
+    # máximo da iteração.
+    
+    best_answer = 0
+
+    # arrays na direção +135º > -45º
+    for col in range(20-3):
+        for row in range(20-3):
+            answer = 1
+            for n in range(4):
+                index = (row + n) * 20 + (col + n)
+                answer *= unidim[index]
+                if answer > best_answer:
+                    best_answer = answer
+    
+    # arrays na direção +45º > -135º
+    for col in range(3, 20):
+        for row in range(20-3):
+            answer = 1
+            for n in range(4):
+                index = (row + n) * 20 + (22 - col - n)
+                answer *= unidim[index]
+                if answer > best_answer:
+                    best_answer = answer
+    
+    # arrays na direção +90º > -90º
+    for col in range(20):
+        for row in range(20-3):
+            answer = 1
+            for n in range(4):
+                index = (row + n) * 20 + col
+                answer *= unidim[index]
+                if answer > best_answer:
+                    best_answer = answer
+    
+    # arrays na direção 180º > 360º
+    for col in range(20-3):
+        for row in range(20):
+            answer = 1
+            for n in range(4):
+                index = (row * 20) + (col + n)
+                answer *= unidim[index]
+                if answer > best_answer:
+                    best_answer = answer
+    
+    print("Answer:", best_answer)
 
 
 if __name__ == "__main__":
