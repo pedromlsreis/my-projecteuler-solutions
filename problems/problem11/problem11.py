@@ -28,16 +28,15 @@
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
 import time
-import numpy as np
-import pandas as pd
+import numpy as np, pandas as pd
 
 def run():
-    # highlighted_coords = [[6, 8], [7, 9], [8, 10], [9, 11]] # [row, column] - 0-based
-    # por ordem, no vetor unidimensional, posições non-zero-based (one-based):
-    # (6+0)*20 + 8+0
-    # (6+1)*20 + 8+1
-    # (6+2)*20 + 8+2
-    # (6+3)*20 + 8+3
+    """Iterar vetor unidimensional `unidim` para cada uma das hipóteses - up, down, left, right, or diagonally.
+    i.e., basta fazer down, right ou diagonalmente para baixo direita ou diagonalmente para baixo esquerda
+    As outras opções acabam por ser repetidas ao longo da matriz, pelo que retirá-las reduz o tempo de
+    processamento.
+    Fazer um loop para cada hipótese e ter em conta esquematização da hipótese na matriz para determinar limite
+    máximo da iteração de linhas e de colunas."""
 
     number_row1  = "08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08".split(" ")
     number_row2  = "49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00".split(" ")
@@ -63,20 +62,11 @@ def run():
     unidim = pd.DataFrame([number_row1, number_row2, number_row3, number_row4, number_row5, number_row6, number_row7, number_row8, number_row9, number_row10, 
             number_row11, number_row12, number_row13, number_row14, number_row15, number_row16, number_row17, number_row18, number_row19, number_row20])
     
-    unidim = unidim.astype(np.int16).values.flatten() # vetor unidimensional que percorre lista a lista
-
-    # Iterar vetor unidimensional `unidim` para cada uma das hipóteses - up, down, left, right, or diagonally.
-    # Id est, basta fazer down, right ou diagonalmente para baixo direita ou diagonalmente para baixo esquerda
-    # As outras opções acabam por ser repetidas ao longo da matriz, pelo que retirá-las reduz o tempo de
-    # processamento.
-    # Fazer contas para determinar qual o intervalo de posições no vetor a iterar, tendo em conta que a matriz
-    # é 20 x 20.
-    # Fazer um `for` para cada hipótese e ter em conta esquematização da hipótese na matriz para determinar limite
-    # máximo da iteração.
+    unidim = unidim.astype(np.int16).values.flatten() # vetor unidimensional que percorre linha a linha
     
     best_answer = 0
 
-    # arrays na direção +135º > -45º
+    # arrays na direção +135º > -45º (diag. para baixo e direita)
     for col in range(20-3):
         for row in range(20-3):
             answer = 1
@@ -86,7 +76,7 @@ def run():
                 if answer > best_answer:
                     best_answer = answer
     
-    # arrays na direção +45º > -135º
+    # arrays na direção +45º > -135º (diag. para baixo e esquerda)
     for col in range(3, 20):
         for row in range(20-3):
             answer = 1
@@ -96,7 +86,7 @@ def run():
                 if answer > best_answer:
                     best_answer = answer
     
-    # arrays na direção +90º > -90º
+    # arrays na direção +90º > -90º (de cima para baixo)
     for col in range(20):
         for row in range(20-3):
             answer = 1
@@ -106,7 +96,7 @@ def run():
                 if answer > best_answer:
                     best_answer = answer
     
-    # arrays na direção 180º > 360º
+    # arrays na direção 180º > 360º (da esquerda para a direita)
     for col in range(20-3):
         for row in range(20):
             answer = 1
