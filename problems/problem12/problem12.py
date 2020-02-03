@@ -20,10 +20,33 @@
 
 
 import time
+import math
 
 def run():
-    
-    
+    max_divisors = 500
+    n = max_divisors
+    answer = False
+
+    while not answer:
+        triangle = int((n * (n + 1)) / 2)
+        print(f"Testing {triangle}...")
+        
+        divisor_counter = 0
+
+        if triangle % 2 == 0:
+            i = 1
+            while not answer:
+                if i == math.ceil(triangle/2) + 1:
+                    break
+                
+                if triangle % i == 0:
+                    divisor_counter += 1
+                    if divisor_counter == max_divisors:
+                        answer = triangle
+                i += 1
+
+        n += 1
+
     print("Answer:", answer)
 
 
