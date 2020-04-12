@@ -18,13 +18,13 @@
 import time
 
 def run():
-    for i in range(1, 1000000):
-        print(i)
-        first_no = i
-        end_no = 1
-        max_sequence = 0
+    
+    end_no = 1
+    max_sequence = 0
 
-        sequence = [first_no]
+    for i in range(1, 1000000):
+        # print(i)
+        sequence = [i]
         n = sequence[-1]
 
         while sequence[-1] != end_no:
@@ -38,6 +38,7 @@ def run():
         if len(sequence) > max_sequence:
             max_sequence = len(sequence)
             answer = sequence[0]
+            print(answer, max_sequence)
 
     print(answer)
 
