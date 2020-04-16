@@ -9,12 +9,19 @@ import math
 
 
 def run():
-    
     solution = 0
+    num = 2
+    power = 1000
 
-    print(solution)
+    power_sum = num ** power
+    print(f"{num}**{power}={power_sum}")
+    
+    for i in str(power_sum):
+        solution += int(i)
+    
+    print("solution:", solution)
 
-
+                       
 if __name__ == "__main__":
     startTime = time.time()
     run()
