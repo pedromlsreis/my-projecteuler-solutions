@@ -7,11 +7,16 @@
 
 
 import time
+from num2words import num2words
 
 
 def run():
     solution = 0
+    first_num = 1
+    last_num = 1000
 
+    for n in range(first_num, last_num+1):
+        solution += len(num2words(n, lang="en_GB", to="cardinal").replace("-", "").replace(" ", ""))
     
     print("solution:", solution)
 
