@@ -63,7 +63,7 @@ def run():
             print(f"index is now {index}")
             
         else:
-            print("error...")
+            print("error: line[index] = line[index+1].")
     
     print(f"result: {result}")
 
