@@ -15,15 +15,16 @@ import time, tqdm
 
 def run():
     power = 5
+    maxdigits = 7
     results = 0
 
     # while len(results) != 3:
-    for number in tqdm.tqdm(range(2, 10000000)):
-        result = []
-        digits = [digit for digit in str(number)]
-        result = sum([int(i)**power for i in digits])
-        if result == number:
-            results += result
+    for number in tqdm.tqdm(range(2, maxdigits * 9 ** power)):
+        sum_ = 0
+        for i in str(number):
+            sum_ += int(i)**power
+        if number == sum_:
+            results += number
         
     print(f"result: {results}")
 
