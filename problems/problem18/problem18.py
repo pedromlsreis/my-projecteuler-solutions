@@ -49,22 +49,18 @@ def run():
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23"""
 
     triangle = [line.split(" ") for line in triangle.split("\n")]
-    result, index = 0, 0
+    for line_id, line in enumerate(triangle):
+        for pos, val in enumerate(line):
+            triangle[line_id][pos] = int(val)
 
-    for line_counter, line in enumerate(triangle[1:]):
-        print(f"line {line_counter+1}/{len(triangle)-1}")
-        
-        if int(line[index]) > int(line[index+1]):
-            result += int(line[index])
-            
-        elif int(line[index]) < int(line[index+1]):
-            result += int(line[index+1])
-            index += 1
-            print(f"index is now {index}")
-            
-        else:
-            print("error: line[index] = line[index+1].")
-    
+    for line in range(len(triangle)-2, -1, -1): 
+        for pos in range(line+1):
+            if triangle[line+1][pos] > triangle[line+1][pos+1]: 
+                triangle[line][pos] += triangle[line+1][pos] 
+            else: 
+                triangle[line][pos] += triangle[line+1][pos+1] 
+  
+    result = triangle[0][0]
     print(f"result: {result}")
 
                        
