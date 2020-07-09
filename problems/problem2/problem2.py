@@ -6,8 +6,10 @@
 
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-
 import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
 
 def run():
     fib_seq = [1, 2]
@@ -26,9 +28,14 @@ def run():
     
     print(f"Fibonacci sequence under four million:\n{fib_seq}\n")
     print("Answer:", total)
+    return total
 
 
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print (f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")

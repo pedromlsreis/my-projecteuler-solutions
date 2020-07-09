@@ -18,39 +18,38 @@
 
 # What is the value of the first triangle number to have over five hundred divisors?
 
-
-import time
 import math
+import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
+
 
 def run():
     max_divisors = 500
-    n = max_divisors
-    answer = False
+    n, curr_divisors = 0, 0
 
-    while not answer:
-        triangle = int((n * (n + 1)) / 2)
-        print(f"Testing {triangle}...")
-        
-        divisor_counter = 0
-
-        if triangle % 2 == 0:
-            i = 1
-            while not answer:
-                if i == math.ceil(triangle/2) + 1:
-                    break
-                
-                if triangle % i == 0:
-                    divisor_counter += 1
-                    if divisor_counter == max_divisors:
-                        answer = triangle
-                i += 1
-
+    while curr_divisors < max_divisors:
         n += 1
+        triangle = int((n * (n + 1)) / 2)
+        print(f"{triangle}...")
+        curr_divisors = 0
+        for divisor in range(1, int(math.sqrt(triangle) + 1)):
+            if triangle % divisor == 0:
+                if divisor == math.sqrt(triangle):
+                    curr_divisors += 1  #for square numbers
+                else:
+                    curr_divisors += 2  # divisors come in pairs
 
-    print("Answer:", answer)
+    print(f"answer: {triangle}")
+    return triangle
 
 
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print (f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")
