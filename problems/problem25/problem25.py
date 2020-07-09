@@ -20,7 +20,11 @@
 
 # What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 
-import time, math
+import math
+import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
 
 def run():
     fOne, fTwo, fN = 1, 1, 1
@@ -33,9 +37,14 @@ def run():
         fN = fOne + fTwo
     
     print(f"result: {index}")
+    return index
 
                        
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print(f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")

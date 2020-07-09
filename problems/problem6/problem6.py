@@ -10,12 +10,12 @@
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
-
 import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
 
 def run():
-    import math
-
     sum1 = 0
     sum2 = 0
 
@@ -27,9 +27,14 @@ def run():
     diff = sum2 - sum1
 
     print("Answer:", diff)
+    return diff
 
 
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print (f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")

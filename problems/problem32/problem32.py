@@ -4,7 +4,12 @@
 # Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
 # HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
 
-import time, tqdm, math
+import math
+import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
+import tqdm
 
 def run():
     n = 9
@@ -22,9 +27,14 @@ def run():
     
     results = sum(products)
     print(f"result: {results}")
+    return results
 
                        
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print(f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")

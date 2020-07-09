@@ -14,6 +14,9 @@
 
 import datetime
 import time
+import sys
+sys.path.append("../..")
+from utils.log import MarkdownLogger
 
 def run():
     min_date = datetime.date(1901, 1, 1)
@@ -27,9 +30,14 @@ def run():
             counter += 1
 
     print(f"result: {counter}")
+    return counter
 
                        
 if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
-    run()
-    print(f"\nThe script took {round(time.time() - startTime, 2)} seconds.")
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe script took {round(duration, 2)} seconds.")
