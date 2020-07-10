@@ -10,11 +10,17 @@ sys.path.append("../..")
 from utils.log import MarkdownLogger
 
 def run():
-
-    primes = {2}
     max_no = 2000000
+    primes = [num for num in range(2, max_no) if all(num % i != 0 for i in range(2, int((num) ** 0.5) + 1))]
+    answer = sum(primes)
+    print("Answer:", answer)
+    return answer
 
-    for x in range(3, max_no, 2):
+
+def run2():
+    max_no = 2000000
+    primes = {2}
+    for x in range(3, max_no + 1, 2):
         print (f"{x}/{max_no}...")
         
         append = True
