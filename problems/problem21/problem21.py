@@ -29,8 +29,9 @@ def run(n=10000):
         divs[num] = s
 
     for k in divs.keys():
-        if divs[k] in divs.keys() and k != divs[k]:
-            if k == divs[divs[k]]:
+        res = divs[k]
+        if res in divs.keys() and k != res:
+            if k == divs[res]:
                 result += k
 
     return result
