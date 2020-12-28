@@ -11,7 +11,7 @@ import time
 import sys
 sys.path.append("../..")
 from utils.log import MarkdownLogger
-import numpy as np, pandas as pd
+import numpy as np
 
 def run():
     cap = 200
