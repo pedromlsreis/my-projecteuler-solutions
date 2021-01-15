@@ -23,10 +23,7 @@ import time
 import sys
 sys.path.append("../..")
 from utils.log import MarkdownLogger
-<<<<<<< HEAD
 
-=======
->>>>>>> 88882ab8699a1600a8c57989e958aa5433687bcc
 
 def run():
     max_divisors = 500
@@ -44,13 +41,8 @@ def run():
                 else:
                     curr_divisors += 2  # divisors come in pairs
 
-<<<<<<< HEAD
     print(f"answer: {triangle}")
     return triangle
-=======
-    print("Answer:", answer)
-    return answer
->>>>>>> 88882ab8699a1600a8c57989e958aa5433687bcc
 
 
 if __name__ == "__main__":
