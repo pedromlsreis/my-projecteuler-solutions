@@ -13,7 +13,6 @@ import time
 import sys
 sys.path.append("../..")
 from utils.log import MarkdownLogger
-import itertools
 
 
 def is_pandigital(number):
