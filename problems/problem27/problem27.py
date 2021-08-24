@@ -12,6 +12,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math
@@ -30,16 +31,16 @@ def run():
     result = [0, 0, 0]
     max_mod_a = 999
     max_mod_b = 1000
-    for a in range(- max_mod_a, max_mod_a + 1):
-        for b in range(- max_mod_b, max_mod_b + 1):
+    for a in range(-max_mod_a, max_mod_a + 1):
+        for b in range(-max_mod_b, max_mod_b + 1):
             n = 0
-            while is_prime(int(n**2 + a * n + b)):
+            while is_prime(int(n ** 2 + a * n + b)):
                 n += 1
             if n - 1 > result[2]:
                 result = [a, b, n - 1]
 
     return result[0] * result[1]
-    
+
 
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
@@ -47,5 +48,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

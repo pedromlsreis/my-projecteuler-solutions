@@ -3,15 +3,15 @@
 # It is possible to show that the square root of two can be expressed as an infinite continued fraction.
 
 # By expanding this for the first four iterations, we get:
-# The next three expansions are 
+# The next three expansions are
 # , , and , but the eighth expansion, , is the first example where the number of digits in the numerator exceeds the number of digits in the denominator.
 
 # In the first one-thousand expansions, how many fractions contain a numerator with more digits than the denominator?
 
 
-
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math
@@ -32,7 +32,7 @@ def run():
             result += 1
 
     return result
-    
+
 
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
@@ -40,5 +40,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

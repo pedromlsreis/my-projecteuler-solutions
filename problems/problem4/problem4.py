@@ -6,15 +6,17 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     palindromes = []
 
     for i in range(100, 1000):
         for j in range(100, 1000):
-            result = i*j
+            result = i * j
             if str(result)[:3] == str(result)[3::][::-1]:
                 palindromes.append(result)
 
@@ -29,5 +31,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

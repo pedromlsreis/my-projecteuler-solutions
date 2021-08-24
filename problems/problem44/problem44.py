@@ -10,6 +10,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
@@ -26,17 +27,17 @@ def is_pentagonal(number):
             return True
         else:
             return False
-        
+
 
 def run():
     t = 1
-    
+
     while t:
         for s in range(1, t):
             i = t * (3 * t - 1) / 2
             j = s * (3 * s - 1) / 2
-            if is_pentagonal(i+j) and is_pentagonal(i-j):
-                return int(i-j)
+            if is_pentagonal(i + j) and is_pentagonal(i - j):
+                return int(i - j)
         t += 1
 
 
@@ -46,5 +47,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

@@ -17,6 +17,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
@@ -29,20 +30,22 @@ def get_cycle_length(decimal_part):
     cycle = decimal_part[0]
     for d in decimal_part:
         if d == decimal_part[-1]:
-
+            pass
 
     return cycle_len
+
 
 def run():
     result = 0
     numerator = 1
     max_denominator = 10
     for denominator in range(2, max_denominator):
-        dec = get_decimal_part(numerator/denominator)
+        dec = get_decimal_part(numerator / denominator)
         print(dec)
-        
+
     return result
-    
+
+
 # print(get_decimal_part(1/9), type(get_decimal_part(1/9)))
 print(run())
 # if __name__ == "__main__":

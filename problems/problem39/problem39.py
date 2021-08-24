@@ -7,9 +7,11 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import operator
+
 
 def run():
     sols = {}
@@ -19,7 +21,7 @@ def run():
             for h in range(b, max_p - a - b + 1):
                 p = a + b + h
                 if p <= max_p:
-                    if a**2 + b**2 == h**2:
+                    if a ** 2 + b ** 2 == h ** 2:
                         if p in sols:
                             sols[p] += 1
                         else:
@@ -35,5 +37,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

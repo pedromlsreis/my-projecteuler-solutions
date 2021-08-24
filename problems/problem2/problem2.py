@@ -8,24 +8,26 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
+
 def run():
     fib_seq = [1, 2]
-    total = 2 # sum manually 2 as it's an even number
-    
+    total = 2  # sum manually 2 as it's an even number
+
     while True:
         new_number = int(fib_seq[-2] + fib_seq[-1])
-        
+
         if new_number <= 4000000:
-            fib_seq.append(new_number)            
+            fib_seq.append(new_number)
             if new_number % 2 == 0:
                 total += new_number
 
         else:
             break
-    
+
     print(f"Fibonacci sequence under four million:\n{fib_seq}\n")
     print("Answer:", total)
     return total
@@ -37,5 +39,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

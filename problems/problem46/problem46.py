@@ -6,6 +6,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math
@@ -35,23 +36,23 @@ def run():
     result = 0
     n = 1
     while True:
-        ord_n = ''.join(sorted(list(str(n))))
+        ord_n = "".join(sorted(list(str(n))))
         a = 2 * n
         b = 3 * n
         c = 4 * n
         d = 5 * n
         e = 6 * n
-        ord_a = ''.join(sorted(list(str(a))))
-        ord_b = ''.join(sorted(list(str(b))))
-        ord_c = ''.join(sorted(list(str(c))))
-        ord_d = ''.join(sorted(list(str(d))))
-        ord_e = ''.join(sorted(list(str(e))))
+        ord_a = "".join(sorted(list(str(a))))
+        ord_b = "".join(sorted(list(str(b))))
+        ord_c = "".join(sorted(list(str(c))))
+        ord_d = "".join(sorted(list(str(d))))
+        ord_e = "".join(sorted(list(str(e))))
         if ord_n == ord_a == ord_b == ord_c == ord_d == ord_e:
             result = n
             break
         n += 1
     return result
-    
+
 
 print(get_composites())
 # if __name__ == "__main__":

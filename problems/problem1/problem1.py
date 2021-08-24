@@ -6,8 +6,10 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     total = 0
@@ -15,7 +17,7 @@ def run():
     for i in range(1000):
         if (i % 3 == 0) or (i % 5 == 0):
             total += i
-    
+
     print("Answer:", total)
     return total
 
@@ -26,5 +28,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

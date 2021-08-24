@@ -27,8 +27,10 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     adjacent_ns = 13
@@ -37,9 +39,9 @@ def run():
     biggest_prod = 0
 
     for i in range(len(input_no)):
-        if len(input_no[i:i+adjacent_ns]) == adjacent_ns:
+        if len(input_no[i : i + adjacent_ns]) == adjacent_ns:
             temp_prod = 1
-            for j in input_no[i:i+adjacent_ns]:
+            for j in input_no[i : i + adjacent_ns]:
                 temp_prod *= int(j)
             if temp_prod > biggest_prod:
                 biggest_prod = temp_prod
@@ -54,5 +56,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

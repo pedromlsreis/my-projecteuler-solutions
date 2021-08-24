@@ -11,13 +11,14 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
 
 def is_pandigital(number):
     pandigital = 123456789
-    if int(''.join(sorted(list(str(number))))) == pandigital:
+    if int("".join(sorted(list(str(number))))) == pandigital:
         return True
     else:
         return False
@@ -26,7 +27,7 @@ def is_pandigital(number):
 def run():
     result = 0
     n = 1
-    
+
     s = ""
 
     while n < 10000:
@@ -40,7 +41,7 @@ def run():
                 break
             elif len(s) == len("123456789"):
                 test.add(s)
-        
+
         for t in test:
             print(f"\tTrying {t}...")
             if is_pandigital(t):
@@ -58,5 +59,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

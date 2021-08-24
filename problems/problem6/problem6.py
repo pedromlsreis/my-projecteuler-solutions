@@ -12,17 +12,19 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     sum1 = 0
     sum2 = 0
 
     for i in range(1, 101):
-        sum1 += (i ** 2)
+        sum1 += i ** 2
         sum2 += i
-    
+
     sum2 = sum2 ** 2
     diff = sum2 - sum1
 
@@ -36,5 +38,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

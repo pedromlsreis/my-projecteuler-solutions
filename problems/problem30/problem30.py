@@ -12,9 +12,11 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import tqdm
+
 
 def run():
     power = 5
@@ -24,19 +26,21 @@ def run():
     for number in tqdm.tqdm(range(2, maxdigits * 9 ** power)):
         sum_ = 0
         for i in str(number):
-            sum_ += int(i)**power
+            sum_ += int(i) ** power
         if number == sum_:
             results += number
-        
+
     print(f"result: {results}")
     return results
 
-                       
+
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
     problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

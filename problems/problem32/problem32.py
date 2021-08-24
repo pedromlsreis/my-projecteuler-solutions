@@ -7,9 +7,11 @@
 import math
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import tqdm
+
 
 def run():
     n = 9
@@ -21,20 +23,22 @@ def run():
         for b in range(min_number, max_number + 1):
             prod = a * b
             all_digits = str(a) + str(b) + str(prod)
-            if (len(all_digits) == n):
+            if len(all_digits) == n:
                 if sorted(all_digits) == [f"{i}" for i in range(1, n + 1)]:
                     products.add(prod)
-    
+
     results = sum(products)
     print(f"result: {results}")
     return results
 
-                       
+
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
     problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

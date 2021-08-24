@@ -10,6 +10,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math
@@ -21,7 +22,7 @@ def is_prime(nr):
     for i in range(2, int(math.sqrt(nr) + 1)):
         if nr % i == 0:
             return False
-    return True 
+    return True
 
 
 def run():
@@ -32,20 +33,20 @@ def run():
         if is_prime(n):
             first_n_primes.append(n)
         n += 1
-    
+
     for j, i in enumerate(first_n_primes):
         if result + i >= 1000000:
             last_index = j
             break
         result += i
-    
+
     x = 0
     while is_prime(result) == False:
-        result -= first_n_primes[last_index - x - 1]       
-
+        result -= first_n_primes[last_index - x - 1]
 
     return result
-    
+
+
 print(run())
 # if __name__ == "__main__":
 #     logger = MarkdownLogger(last_problem=723)

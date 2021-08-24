@@ -6,28 +6,30 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
 from numba import jit
 
+
 @jit(nopython=True)
 def run():
     x = 20
 
-    while True:        
+    while True:
         no_remainders = True
-        
-        for i in range(2,21):
+
+        for i in range(2, 21):
             if x % i != 0:
                 no_remainders = False
-        
+
         if no_remainders:
             smallest_answer = x
             break
-        
+
         x += 1
-    
+
     print("Answer:", smallest_answer)
     return smallest_answer
 
@@ -38,5 +40,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

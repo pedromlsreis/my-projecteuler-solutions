@@ -8,16 +8,18 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import numpy as np
+
 
 def find_divisors(num):
     n_divisors = set([])
     for i in range(1, int(np.round(num / 2)) + 1):
         if num % i == 0:
             n_divisors.add(i)
-    
+
     return n_divisors
 
 
@@ -43,5 +45,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

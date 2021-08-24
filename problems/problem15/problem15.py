@@ -7,8 +7,10 @@
 import math
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     """
@@ -19,7 +21,7 @@ def run():
     # for n in range(1, last+1):
     #     solution = int(math.factorial(2 * n) / (math.factorial(n) * math.factorial(n)))
     #     print(f"{n}x{n}: {solution}")
-    
+
     # print(f"final solution: {solution}")
     return int(math.factorial(2 * last) / (math.factorial(last) * math.factorial(last)))
 
@@ -30,5 +32,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

@@ -11,6 +11,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import string
@@ -36,12 +37,12 @@ def run():
     result = 0
     with open("p042_words.txt", "r") as f:
         file = f.read()
-    
+
     words = file.split('","')
     for word in words:
         if is_triangle_word(word):
             result += 1
-    
+
     return result
 
 
@@ -51,5 +52,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

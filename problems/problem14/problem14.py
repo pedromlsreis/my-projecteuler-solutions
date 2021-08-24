@@ -16,11 +16,13 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
+
 def run():
-    
+
     end_no = 1
     max_sequence = 0
 
@@ -31,7 +33,7 @@ def run():
 
         while sequence[-1] != end_no:
             n = sequence[-1]
-            
+
             if n % 2 == 0:
                 sequence.append(int(n / 2))
             else:
@@ -52,5 +54,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

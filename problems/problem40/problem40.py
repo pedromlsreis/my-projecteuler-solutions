@@ -12,6 +12,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 
@@ -19,12 +20,20 @@ from utils.log import MarkdownLogger
 def run():
     digits = "."
     n = 1
-    
+
     while len(digits) < 1000001:
         digits += str(n)
         n += 1
-            
-    return int(digits[1]) * int(digits[10]) * int(digits[100]) * int(digits[1000]) * int(digits[10000]) * int(digits[100000]) * int(digits[1000000])
+
+    return (
+        int(digits[1])
+        * int(digits[10])
+        * int(digits[100])
+        * int(digits[1000])
+        * int(digits[10000])
+        * int(digits[100000])
+        * int(digits[1000000])
+    )
 
 
 if __name__ == "__main__":
@@ -33,5 +42,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

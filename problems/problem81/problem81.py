@@ -8,11 +8,12 @@
 #   630   803   746   422   111
 #   537   699   497   121   956
 #   805   732   524    37   331
- 
+
 # Find the minimal path sum from the top left to the bottom right by only moving right and down in matrix.txt (right click and "Save Link/Target As..."), a 31K text file containing an 80 by 80 matrix.
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import pandas as pd
@@ -22,6 +23,7 @@ def run():
     data = pd.read_csv("p081_matrix.txt", sep=",")
     print(data.head())
     return data
+
 
 run()
 

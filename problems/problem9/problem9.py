@@ -11,24 +11,26 @@
 import math
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     # TODO: Took 2 min. Reduce time.
     total = 1000
 
-    for a in range(1, total+1):
-        for b in range(a+1, total+1):
-            for c in range(b+1, total+1):
-                if a**2 + b**2 == c**2:
+    for a in range(1, total + 1):
+        for b in range(a + 1, total + 1):
+            for c in range(b + 1, total + 1):
+                if a ** 2 + b ** 2 == c ** 2:
                     if a + b + c == total:
                         answer = a * b * c
-                        break                    
+                        break
 
     print("Answer:", answer)
     return answer
-    
+
 
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
@@ -36,5 +38,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

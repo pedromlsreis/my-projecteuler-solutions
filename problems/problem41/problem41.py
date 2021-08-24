@@ -7,6 +7,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import itertools, math
@@ -29,9 +30,11 @@ def is_pandigital(number):
 def run():
     n_digits = 9
     while n_digits:
-        for n in sorted(list(itertools.permutations(list(range(1, n_digits + 1)))))[::-1]:
-            if is_prime(int(''.join([str(x) for x in n]))):
-                return int(''.join([str(x) for x in n]))
+        for n in sorted(list(itertools.permutations(list(range(1, n_digits + 1)))))[
+            ::-1
+        ]:
+            if is_prime(int("".join([str(x) for x in n]))):
+                return int("".join([str(x) for x in n]))
         n_digits -= 1
 
 
@@ -41,5 +44,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

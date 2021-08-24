@@ -10,23 +10,31 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import operator
 
+
 def get_triangle(n=int):
     return int(n * (n + 1) / 2)
+
 
 def get_pentagonal(n=int):
     return int(n * (3 * n - 1) / 2)
 
+
 def get_hexagonal(n=int):
     return int(n * (2 * n - 1))
 
+
 def run():
-    t = 286; tset = set([])
-    p = 166; pset = set([])
-    h = 144; hset = set([])
+    t = 286
+    tset = set([])
+    p = 166
+    pset = set([])
+    h = 144
+    hset = set([])
     k = 0
     while True:
         if k == 100:
@@ -38,7 +46,7 @@ def run():
                 break
             else:
                 k -= 100
-    
+
         tset.add(get_triangle(t))
         pset.add(get_pentagonal(p))
         hset.add(get_hexagonal(h))
@@ -55,5 +63,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

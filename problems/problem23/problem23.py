@@ -12,6 +12,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math, operator
@@ -21,7 +22,7 @@ def get_divs(number):
     divs = [1]
     for i in range(2, int(math.sqrt(number)) + 1):
         if number % i == 0:
-            divs.extend([i, int(number/i)])
+            divs.extend([i, int(number / i)])
     return list(set(divs))
 
 
@@ -39,7 +40,7 @@ def run():
                 break
             rest += 1
 
-    return sum(list(set(list(range(1,28124))) - can_be))
+    return sum(list(set(list(range(1, 28124))) - can_be))
 
 
 if __name__ == "__main__":
@@ -48,5 +49,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

@@ -11,7 +11,7 @@
 # That is, 349 took three iterations to arrive at a palindrome.
 
 # Although no one has proved it yet, it is thought that some numbers, like 196, never produce a palindrome.
-# A number that never forms a palindrome through the reverse and add process is called a Lychrel number. 
+# A number that never forms a palindrome through the reverse and add process is called a Lychrel number.
 # Due to the theoretical nature of these numbers, and for the purpose of this problem, we shall assume that a number is Lychrel until proven otherwise.
 # In addition you are given that for every number below ten-thousand, it will either (i) become a palindrome in less than fifty iterations, or, (ii) no one,
 # with all the computing power that exists, has managed so far to map it to a palindrome.
@@ -24,6 +24,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import math
@@ -41,7 +42,7 @@ def run():
     result = 0
     n = 1
     max_n = 10000 - n
-    
+
     while n <= max_n:
         iters = 1
         while iters < 50:
@@ -49,7 +50,7 @@ def run():
                 r = rev_and_add(n)
             else:
                 r = rev_and_add(r)
-            
+
             if check_palindrome(r):
                 result += 1
                 break
@@ -66,5 +67,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )

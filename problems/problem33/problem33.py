@@ -10,6 +10,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import operator
@@ -28,31 +29,32 @@ def run():
     d = 11
 
     b, n_batches = 0, 0
-    
+
     while len(four_fracs) < 4:
-        if b == 500: # batch size: 500
+        if b == 500:  # batch size: 500
             b = 0
-            n += 1 # atualizar numerador quando batch é atingido
+            n += 1  # atualizar numerador quando batch é atingido
             n_batches += 1
-            d = 11 + n_batches # starting point do denominador
-        
+            d = 11 + n_batches  # starting point do denominador
+
         if is_non_trivial(n, d):
             if n != 49 or d != 98:
                 four_fracs.append(Fraction(n, d))
 
         b += 1
-        d += 1 # denominador sempre a crescer
-    
+        d += 1  # denominador sempre a crescer
+
     return (four_fracs[0] * four_fracs[1] * four_fracs[2] * four_fracs[3]).denominator
+
 
 print(run())
 
 
 # if __name__ == "__main__":
-    # logger = MarkdownLogger(last_problem=723)
-    # problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
-    # startTime = time.time()
-    # solution = run()
-    # duration = round(time.time() - startTime, 5)
-    # logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    # print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+# logger = MarkdownLogger(last_problem=723)
+# problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
+# startTime = time.time()
+# solution = run()
+# duration = round(time.time() - startTime, 5)
+# logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+# print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")

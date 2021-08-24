@@ -7,8 +7,10 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
+
 
 def run():
     prime_number = 10001
@@ -20,10 +22,10 @@ def run():
         for i in primes:
             if x % i == 0:
                 append = False
-        
+
         if append:
             primes.append(x)
-        
+
         x += 2
 
     answer = primes[prime_number - 1]
@@ -37,5 +39,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

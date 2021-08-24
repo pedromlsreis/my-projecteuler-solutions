@@ -7,27 +7,33 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 from num2words import num2words
+
 
 def run():
     solution = 0
     first_num = 1
     last_num = 1000
 
-    for n in range(first_num, last_num+1):
-        solution += len(num2words(n, lang="en_GB", to="cardinal").replace("-", "").replace(" ", ""))
-    
+    for n in range(first_num, last_num + 1):
+        solution += len(
+            num2words(n, lang="en_GB", to="cardinal").replace("-", "").replace(" ", "")
+        )
+
     print("solution:", solution)
     return solution
 
-                       
+
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
     problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
     print(f"\nThe script took {round(duration, 2)} seconds.")

@@ -15,6 +15,7 @@
 
 import time
 import sys
+
 sys.path.append("../..")
 from utils.log import MarkdownLogger
 import itertools
@@ -31,23 +32,23 @@ def is_ss_divisible(number):
     n_div = 0
     while n_div < len(divs):
         div = divs[n_div]
-        if int(str(number)[n_div+1 : n_div+4]) % div != 0:
+        if int(str(number)[n_div + 1 : n_div + 4]) % div != 0:
             return False
         n_div += 1
     return True
-        
+
 
 def run():
     min_d, max_d = 0, 9
     result = 0
     numbers = list(itertools.permutations(list(range(min_d, max_d + 1))))
     for n in numbers:
-        number = int(''.join([str(digit) for digit in n]))
+        number = int("".join([str(digit) for digit in n]))
         if len(str(number)) == 10:
             if is_ss_divisible(number):
                 result += number
     return result
-    
+
 
 if __name__ == "__main__":
     logger = MarkdownLogger(last_problem=723)
@@ -55,5 +56,9 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+    logger.add_problem(
+        solution, problem_id=problem_id, duration=duration, language="Python"
+    )
+    print(
+        f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
+    )
