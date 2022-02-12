@@ -26,33 +26,30 @@ def is_prime(nr):
 
 
 def run():
-    result = 0
+    result = [0]
+    max_n = 1000000
     n = 2
-    first_n_primes = [0]
-    while first_n_primes[-1] < 1000000:
+    first_n_primes = []
+    while len(first_n_primes) < max_n**(1/2):
         if is_prime(n):
             first_n_primes.append(n)
         n += 1
 
-    for j, i in enumerate(first_n_primes):
-        if result + i >= 1000000:
-            last_index = j
-            break
-        result += i
+    for idx in range(len(first_n_primes)):
+        for j in range(len(first_n_primes) - idx, 2, -1):
+            new_sum = sum(first_n_primes[idx:j])
+            if new_sum < max_n and is_prime(new_sum) and new_sum > sum(result) \
+                and len(first_n_primes[idx:j]) > len(result):
+                result = first_n_primes[idx:j]
 
-    x = 0
-    while is_prime(result) == False:
-        result -= first_n_primes[last_index - x - 1]
-
-    return result
+    return sum(result)
 
 
-print(run())
-# if __name__ == "__main__":
-#     logger = MarkdownLogger(last_problem=723)
-#     problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
-#     startTime = time.time()
-#     solution = run()
-#     duration = round(time.time() - startTime, 5)
-#     logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-#     print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
+    startTime = time.time()
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
