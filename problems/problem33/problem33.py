@@ -18,10 +18,22 @@ from fractions import Fraction
 
 
 def is_non_trivial(numerator, denominator):
-    # TODO: condições de ser não trivial
-    Fraction(numerator, denominator)
-    return True
+    if numerator % 10 == 0 or denominator % 10 == 0 or denominator == 0:
+        return False
 
+    n = str(numerator)
+    d = str(denominator)
+
+    if n[0] == d[0] and int(d[1]) != 0:
+        return int(n[1]) / int(d[1]) == numerator / denominator
+    elif n[0] == d[1] and int(d[0]) != 0:
+        return int(n[1]) / int(d[0]) == numerator / denominator
+    elif n[1] == d[0] and int(d[1]) != 0:
+        return int(n[0]) / int(d[1]) == numerator / denominator
+    elif n[1] == d[1] and int(d[0]) != 0:
+        return int(n[0]) / int(d[0]) == numerator / denominator
+    else:
+        return False
 
 def run():
     four_fracs = [Fraction(49, 98)]
@@ -47,14 +59,11 @@ def run():
     return (four_fracs[0] * four_fracs[1] * four_fracs[2] * four_fracs[3]).denominator
 
 
-print(run())
-
-
-# if __name__ == "__main__":
-# logger = MarkdownLogger(last_problem=723)
-# problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
-# startTime = time.time()
-# solution = run()
-# duration = round(time.time() - startTime, 5)
-# logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
-# print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
+if __name__ == "__main__":
+    logger = MarkdownLogger(last_problem=723)
+    problem_id = int(sys.argv[0].split("m")[1].split(".")[0])
+    startTime = time.time()
+    solution = run()
+    duration = round(time.time() - startTime, 5)
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    print(f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds.")
