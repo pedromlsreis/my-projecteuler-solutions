@@ -17,30 +17,24 @@ import sys
 
 sys.path.append("../..")
 from utils.log import MarkdownLogger
-from tqdm import tqdm
 
 
 def split_and_add_squares(n):
-    return sum([int(x) ** 2 for x in str(n)])
-
+    return sum(int(x) ** 2 for x in str(n))
 
 def run():
     result = 0
 
-    for num in tqdm(range(10000000)):
-
-        seen_before = False
+    for num in range(1, 10000000):
+        chain = set()
         next = num
-        chain = set([next])
 
-        while not seen_before:
+        while next != 1 and next != 89 and next not in chain:
+            chain.add(next)
             next = split_and_add_squares(next)
-            if next not in chain:
-                chain.add(next)
-            else:
-                if next == 89:
-                    result += 1
-                seen_before = True
+
+        if next == 89:
+            result += 1
 
     return result
 
@@ -51,7 +45,7 @@ if __name__ == "__main__":
     startTime = time.time()
     solution = run()
     duration = round(time.time() - startTime, 5)
-    # logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
+    logger.add_problem(solution, problem_id=problem_id, duration=duration, language="Python")
     print(
         f"\nThe solution is {solution} and the script took {round(duration, 2)} seconds."
     )
